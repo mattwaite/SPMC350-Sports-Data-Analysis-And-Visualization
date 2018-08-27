@@ -38,10 +38,10 @@ You may have to quit and restart R Studio. I honestly can't remember.
 
 For the rest of the class, we're going to be working in notebooks. In notebooks, you will both run your code and explain each step, much as I am doing here. 
 
-To start a notebook, you click on the green plus in the top left corner and go down to R Notebook.
+To start a notebook, you click on the green plus in the top left corner and go down to R Notebook. Do that now. 
 
 ![](verybasics2.png "Creating an R notebook")
-To add text, simply type. To add code you can click on the *Insert* button on the toolbar or by pressing *Cmd+Option+I*.
+To add text, simply type. To add code you can click on the *Insert* button on the toolbar or by pressing *Cmd+Option+I* on Mac or *Ctl+Option+I* on PC.
 
 To run your code after you add it, click the green triangle on the right side of your code chunk. 
 
@@ -51,4 +51,4 @@ The preview shows you a rendered HTML copy of the contents of the editor. Conseq
 
 ### Assignment
 
-Create an R notebook. In it, fill in the top matter and write a sentence below it. Don't care what. Then add a code block and add two numbers together. Run that code block. Save the file and submit the .Rmd file created when you save it. That's it. Simple.  
+Create an R notebook (which you should have done earlier). In it, fill in the top matter and write a sentence below it. Don't care what. Then add a code block and add two numbers together. Run that code block. Save the file and submit the .Rmd file created when you save it. That's it. Simple.  
