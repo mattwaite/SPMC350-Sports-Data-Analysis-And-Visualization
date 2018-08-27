@@ -1,9 +1,4 @@
----
-title: "The very basics of R"
-output:
-  html_document:
-    df_print: paged
----
+# The Very Basics of R
 
 R is a programming language, one specifically geared toward statistical analysis. Like all programming languages, it has certain built in functions and you can interact with it in multiple ways. The first, and most basic, is the console. 
 
