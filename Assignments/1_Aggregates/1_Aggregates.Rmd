@@ -100,6 +100,7 @@ Answer these questions:
 
 1. What are the mean and median salaries of each department on each campus? And how many employees are on each department?
 2. What are the median salaries of the largest departments at each campus? And how does that compare to the average salary for that department?
+3. What department has the highest mean salary? How does that compare with the median?
 
 To do this, you'll need to [download the salary data data](https://www.dropbox.com/s/yqweytz0sb6cd5f/nusalaries1718.csv?dl=0).
 
