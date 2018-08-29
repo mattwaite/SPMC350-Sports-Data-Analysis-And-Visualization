@@ -51,4 +51,4 @@ The preview shows you a rendered HTML copy of the contents of the editor. Conseq
 
 ### Assignment
 
-Create an R notebook (which you should have done earlier). In it, fill in the top matter and write a sentence below it. Don't care what. Then add a code block and add two numbers together. Run that code block. Save the file and submit the .Rmd file created when you save it. That's it. Simple.  
+Create an R notebook (which you should have done earlier). In it, fill in the top matter and write a sentence below it. Don't care what. Then add a code block and add two numbers together. Run that code block. Save the file and submit the .Rmd file created when you save it. That's it. Simple.
