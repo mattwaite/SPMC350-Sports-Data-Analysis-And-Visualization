@@ -15,7 +15,7 @@ library(dplyr)
 
 The first thing we need to do is get some data to work with. We do that by reading it in. In our case, we're going to read data from a csv file -- a comma-separated values file.
 
-The CSV file we're going to read from is a [Nebraska Game and Parks Commission dataset]() of confirmed mountain lion sightings in Nebraska. There are, on occasion, fierce debates about mountain lions and if they should be hunted in Nebraska. This dataset can tell us some interesting things about that debate. 
+The CSV file we're going to read from is a [Nebraska Game and Parks Commission dataset](https://www.dropbox.com/s/2l282ril6h78w8e/mountainlions.csv?dl=0) of confirmed mountain lion sightings in Nebraska. There are, on occasion, fierce debates about mountain lions and if they should be hunted in Nebraska. This dataset can tell us some interesting things about that debate. 
 
 So step 1 is to import the data. The code looks like this:
 
