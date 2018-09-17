@@ -134,3 +134,16 @@ coaches <- salaries %>% filter(str_detect(Position, 'Coach')) %>% filter(!Depart
 ```
 
 Now, your turn. Answer question 1 using the coaches dataframe. 
+
+```{r}
+coaches <- read_csv('coaches.csv')
+
+```
+
+
+
+
+
+
+
+
