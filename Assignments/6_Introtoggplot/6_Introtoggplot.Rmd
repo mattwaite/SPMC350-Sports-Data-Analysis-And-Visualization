@@ -124,6 +124,8 @@ ggplot(top10, aes(x=reorder(Institution, -`2017-2018`), weight=`2017-2018`)) + g
 
 ### Assignment
 
+[Read this New York Times visual story about the launch angle of baseballs hit](https://www.nytimes.com/interactive/2017/07/09/sports/baseball/BASEBALL-LAUNCH-ANGLE.html). Be prepared to discuss it on Monday. 
+
 Take this same attendance data. I want you to produce a bar chart of the top 10 schools by percent change in attendance between 2017-2018 and 2013-2014. I want you to change the title and the labels and I want you to apply a theme different from the ones I used above. You can find [more themes in the ggplot documentation](https://ggplot2.tidyverse.org/reference/ggtheme.html). REMINDER: Slack help will not be available Monday morning. 
 
 #### Rubric
