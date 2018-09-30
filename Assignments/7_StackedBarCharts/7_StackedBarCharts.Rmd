@@ -38,7 +38,7 @@ This is your task for next class.
 
 ### Assignment
 
-I want you to make this same chart, except I want you to make the weight the percentage of the total number of graduates that gender represents. You'll be mutating a new field to create that percentage. You'll then chart it will the fill. The end result should be a stacked bar chart allowing you to compare genders between universities. 
+I want you to make this same chart, except I want you to make the weight the percentage of the total number of graduates that gender represents. You'll be mutating a new field to create that percentage. You'll then chart it with the fill. The end result should be a stacked bar chart allowing you to compare genders between universities. 
 
 #### Rubric
 
