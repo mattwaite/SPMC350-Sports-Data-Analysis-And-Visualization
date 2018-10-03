@@ -124,7 +124,7 @@ ggplot() +
   geom_line(data=penalties_with_dates, aes(x=Season, y=`Yards/G`, group=Name), color="light grey") + 
   geom_line(data=nu, aes(x=Season, y=`Yards/G`, group=Name), color="red") +
   geom_line(data=mean_by_season, aes(x=Season, y=mean_penalties), color="black") +
-  labs(x="Season", y="Penalty yards per game", title="From bad to worse: Nebraska and penalties", subtitle="Nebraska leads the FBS in penalty yards per game in the 2018 season.", caption="Source: cfbstats.com | By Matt Waite") + 
+  labs(x="Season", y="Penalty yards per game", title="Frost: \"We look like an undisciplined team\"", subtitle="Nebraska is tied for dead last in the FBS in penalty yards per game in the 2018 season.", caption="Source: NCAA | By Matt Waite") + 
   theme(plot.title = element_text(size = 16, face = "bold"), axis.title = element_text(size = 8), plot.subtitle = element_text(size=10))  + 
   annotate("text", x=as.Date("2010-01-01"), y=48, label="FBS Average", size=3) +
   annotate("text", x=as.Date("2010-01-01"), y=75, label="Nebraska", size=3)

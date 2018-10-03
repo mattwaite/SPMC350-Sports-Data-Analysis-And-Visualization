@@ -1,0 +1,106 @@
+# Joins and scatterplots
+
+Bar charts were about comparing the relative proportion of a thing to another thing.
+
+Line charts are to show how something changes over time.
+
+Today, we're looking at the scatterplot, a staple of statistics and the sciences that strives to show how related two numbers are to each other. After looking at third-down conversion performance in the last assignment, let's ask this question that the scatterplot can help: How related to offensive success is third-down conversion percentage? 
+
+For this assignment, you're going to need the Scoring offense data and the third down conversion data from here. You can get that with IMPORTHTML in your Google Sheets. If you still have the formulas from your last assignments, you just need to change one number from the URL to make them work for this assignment. 
+
+```{r}
+library(tidyverse)
+```
+
+Now lets import our data. We should have two spreadsheets -- scoring stats and third down performance. 
+
+```{r}
+scoring <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Sports/Data/ScoringOffense.csv")
+
+thirddown <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Sports/Data/ThirdDownConversions.csv")
+```
+
+This presents a problem for us -- we need these two sheets to be one. We can do that using something called a join. Specifically a left join. There's lots of types of joins. A left join says keep everything in the left table and only include things in the right table that match some condition. In our case, we need to match two things: Year and Name. That way, 2010 Nebraska gets matched to 2010 Nebraska instead of god knows what years getting matched to each other. 
+
+```{r}
+offense <- left_join(scoring, thirddown, by=c("Year", "Name"))
+```
+
+Now we have what we need. We have a dataframe with all the data we have together. 
+
+```{r}
+head(offense)
+```
+
+Scatterplots are very simple and very powerful. We simply need to establish an X and a Y in our aesthetic and set the geometry to point. The way to think about this is when X increases, Y increases. So with our question, we would say as third-down conversion percentage increases, points per game increases. That makes intuitive sense, right? How much though? 
+
+```{r}
+ggplot(offense, aes(x=`Conversion %`, y=`Points/G`)) + geom_point() 
+```
+
+We can see by the shape of the dots that indeed, as conversion percentage goes up, points go up. 
+
+In statistics, there is something called a fit line -- the line that predicts shows what happens given the data. There's lot of fit lines we can use but the easiest to understand is a straight line. It's like linear algebra -- for each increase or decrease in x, we get an increase or descrease in x. To get the fit line, we add geom_smooth with a method.
+
+```{r}
+ggplot(offense, aes(x=`Conversion %`, y=`Points/G`)) + geom_point() + geom_smooth(method=lm, se=FALSE)
+```
+
+So we can see how important third down conversions are to scoring. But still, how important? For this, we're going to dip our toes into statistics. We want to find out the correlation coefficient (specifically the Pearson Correlation Coefficient). That will tell us how related our two numbers are. We do that using cor.test, which is part of R core.
+
+```{r}
+cor.test(offense$`Conversion %`, offense$`Points/G`)
+```
+That bottom number is the key. If we square it, we then know exactly how much of scoring can be predicted by third down conversions.
+
+```{r}
+(0.6569602 * 0.6569602)*100
+```
+
+So what that says is that 43 percent of a team's score is predicted by their third down percentage. That's nearly half. In social science, anything above 10 percent is shockingly predictive. So this is huge if this were human behavior research. In football, it's not that surprising, but we now know how much is predicted. 
+
+So where does Nebraska grade out here? 
+
+```{r}
+nu <- offense %>% filter(Name=="Nebraska")
+```
+
+```{r}
+ggplot(data=offense, aes(x=`Conversion %`, y=`Points/G`)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + geom_point(data=nu, aes(x=`Conversion %`, y=`Points/G`), color="red") + geom_text(data=nu, aes(x=`Conversion %`, y=`Points/G`, label=Year)) 
+```
+
+Our fit line is almost exactly predictive of where the team should be in terms of score and third down conversion. If anything, we're a little underperforming our third down conversion percentage. And it's been pretty predictive of other Nebraska teams in the past. 
+
+### Some bonus code
+
+Those labels look awful. Let's fix them using a library called ggrepel. You'll have to install it with `install.packages('ggrepel')`
+
+```{r}
+library(ggrepel)
+```
+
+All we have to add is `_repel` to our geom_text and it will very nicely move things around for us. 
+```{r}
+ggplot(data=offense, aes(x=`Conversion %`, y=`Points/G`)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + geom_point(data=nu, aes(x=`Conversion %`, y=`Points/G`), color="red") + geom_text_repel(data=nu, aes(x=`Conversion %`, y=`Points/G`, label=Year)) 
+```
+Let's quickly add our labeling and styling from the last extra code I gave you and we've got us a pretty solid graphic. 
+
+```{r}
+ggplot(data=offense, aes(x=`Conversion %`, y=`Points/G`)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + geom_point(data=nu, aes(x=`Conversion %`, y=`Points/G`), color="red") + geom_text_repel(data=nu, aes(x=`Conversion %`, y=`Points/G`, label=Year)) + labs(x="Third-down conversion rate", y="Points per game", title="Nebraska's woes on third down predict scoreboard", subtitle="The better a team is on third down, the more points they score. The Huskers are 118th in the FBS.", caption="Source: NCAA | By Matt Waite") + theme(plot.title = element_text(size = 16, face = "bold"), axis.title = element_text(size = 8), plot.subtitle = element_text(size=10))
+```
+
+### Assignment
+
+How predictive are penalty yards on points per game? Do more disiplined teams score more points than undisciplined ones?
+
+You're going to have to join the data you created of penalty yards by team since 2009 to your offensive statistics. Then you'll make your own scatterplot, add a fit line and run a correlation test. What does it say? How you explain this is important for this assignment. 
+
+#### Rubric
+
+1. Did you create the data? 
+2. Did you import it correctly?
+3. Did you join the two datasets together correctly?
+4. Did you make a scatterplot?
+5. Did you run the correlation test?
+6. Did you explain your steps and your answers in markdown comments?
+
