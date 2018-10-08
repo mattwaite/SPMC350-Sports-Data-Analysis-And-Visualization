@@ -86,14 +86,14 @@ ggplot(data=offense, aes(x=`Conversion %`, y=`Points/G`)) + geom_point(color="gr
 Let's quickly add our labeling and styling from the last extra code I gave you and we've got us a pretty solid graphic. 
 
 ```{r}
-ggplot(data=offense, aes(x=`Conversion %`, y=`Points/G`)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + geom_point(data=nu, aes(x=`Conversion %`, y=`Points/G`), color="red") + geom_text_repel(data=nu, aes(x=`Conversion %`, y=`Points/G`, label=Year)) + labs(x="Third-down conversion rate", y="Points per game", title="Nebraska's woes on third down predict scoreboard", subtitle="The better a team is on third down, the more points they score. The Huskers are 118th in the FBS.", caption="Source: NCAA | By Matt Waite") + theme(plot.title = element_text(size = 16, face = "bold"), axis.title = element_text(size = 8), plot.subtitle = element_text(size=10))
+ggplot(data=offense, aes(x=`Conversion %`, y=`Points/G`)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + geom_point(data=nu, aes(x=`Conversion %`, y=`Points/G`), color="red") + geom_text_repel(data=nu, aes(x=`Conversion %`, y=`Points/G`, label=Year)) + labs(x="Third-down conversion rate", y="Points per game", title="Nebraska's woes on third down predict scoreboard", subtitle="The better a team is on third down, the more points they score. The Huskers are 118th in the FBS.", caption="Source: NCAA | By Matt Waite") + theme_minimal() + theme(plot.title = element_text(size = 16, face = "bold"), axis.title = element_text(size = 8), plot.subtitle = element_text(size=10), panel.grid.minor = element_blank()) 
 ```
 
 ### Assignment
 
 How predictive are penalty yards on points per game? Do more disiplined teams score more points than undisciplined ones?
 
-You're going to have to join the data you created of penalty yards by team since 2009 to your offensive statistics. Then you'll make your own scatterplot, add a fit line and run a correlation test. What does it say? How you explain this is important for this assignment. 
+You're going to have to join the data [you created of penalty yards by team](http://www.cfbstats.com/2018/leader/national/team/offense/split01/category09/sort01.html) since 2009 to your [offensive statistics](http://www.cfbstats.com/2018/leader/national/team/offense/split01/category09/sort01.html). Then you'll make your own scatterplot, add a fit line and run a correlation test. What does it say? How you explain this is important for this assignment. 
 
 #### Rubric
 
@@ -103,4 +103,29 @@ You're going to have to join the data you created of penalty yards by team since
 4. Did you make a scatterplot?
 5. Did you run the correlation test?
 6. Did you explain your steps and your answers in markdown comments?
+
+### Addendum
+
+So how well does our data predict the Nebraska vs Wisconsin outcome? 
+
+How close to the score can we get if we just know their third down conversion percentage? 
+
+First, let's run our linear model on points per game vs conversion percentage. 
+
+```{r}
+fit <- lm(offense$`Points/G`~offense$`Conversion %`)
+```
+
+What we are looking for here is the slope of the line -- how many points does each percentage increase in third down conversion percentage equate to? In the linear model, that's know as the Estimate. 
+
+```{r}
+summary(fit)
+```
+
+```{r}
+#nu 
+30 * 0.83280
+#wi
+50 * 0.83280
+```
 
