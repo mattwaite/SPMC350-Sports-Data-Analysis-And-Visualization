@@ -72,5 +72,8 @@ Compare Nebraska and Wisconsin using a Waffle chart using something other than w
 [Here's the library's documentation](https://github.com/hrbrmstr/waffle).
 [Here's the stats from the game](https://www.ncaa.com/game/football/fbs/2018/10/06/nebraska-wisconsin/team-stats).
 
-Turn in your notebook with your waffle chart by the end of class.
+Turn in your notebook with your waffle chart by the end of class. It must contain these two things:
+
+* Your waffle chart
+* A written narrative of what it says. What does your waffle chart say about how that game turned out?
 
