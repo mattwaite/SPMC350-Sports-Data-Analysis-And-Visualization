@@ -116,7 +116,7 @@ First, let's run our linear model on points per game vs conversion percentage.
 fit <- lm(offense$`Points/G`~offense$`Conversion %`)
 ```
 
-What we are looking for here is the slope of the line -- how many points does each percentage increase in third down conversion percentage equate to? In the linear model, that's know as the Estimate. 
+What we are looking for here is the slope of the line -- how many points does each percentage increase in third down conversion percentage equate to? In the linear model, that's know as the Estimate. nn b
 
 ```{r}
 summary(fit)
