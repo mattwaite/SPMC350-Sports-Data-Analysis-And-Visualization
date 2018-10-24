@@ -1,0 +1,55 @@
+# Making data that moves
+
+There is a package called gganimate that ... you guessed it ... animates your ggplot work. This is useful if you have many years of data or data that changes in some meaningful way. 
+
+Let's compare Nebraska's defense to Alabama's. 
+
+```{r}
+install.packages('devtools')
+devtools::install_github('thomasp85/gganimate')
+```
+Update all packages. Yes you want to install from source.
+
+```{r}
+library(tidyverse)
+library(gganimate)
+library(ggrepel)
+```
+
+```{r}
+scoringdefense <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Sports/Data/ScoringDefense.csv")
+defensivethirddowns <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Sports/Data/OpponentThirdDown.csv")
+```
+
+```{r}
+defensethird <- left_join(defensivethirddowns, scoringdefense, by=c('Year', 'Name'))
+nudefthird <- defensethird %>% filter(Name == "Nebraska")
+aldefthird <- defensethird %>% filter(Name == "Alabama")
+```
+
+The important bits below:
+
+1. Each geom needs a frame. The frame is something like a year or a month or a game. Some time period. 
+2. That frame goes in the aes of each plot. Miss one and it will make art, but not the kind you want. 
+3. You can make dynamic labels. See the labs directive.
+4. The rest is simple. Just add your frame variable -- which field you are using to separate this -- into the transition_time function. 
+
+
+```{r}
+ggplot(data=defensethird, aes(x=`Conversion %`, y=`Points/G`, frame = Year)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + geom_point(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`, frame = Year), color="red") + geom_point(data=aldefthird, aes(x=`Conversion %`, y=`Points/G`, frame = Year), color="black") + geom_text(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`, label=Name, frame = Year)) + geom_text(data=aldefthird, aes(x=`Conversion %`, y=`Points/G`, label=Name, frame = Year)) +
+  labs(title = 'Two teams going in different directions: Alabama vs Nebraska {frame_time}', x = 'Opponent third down', y = 'Points per game') +
+  transition_time(Year) +
+  ease_aes('linear')
+```
+
+### Assignment
+
+Animate your scatterplot from the scatterplot assignment looking at penalties. How has Nebraska changed over time? Produce an animated scatterplot similar to this walkthrough. 
+
+#### Rubric
+
+1. Did you create an animated scatterplot?
+2. Is Nebraska marked on it with the rest of the FBS?
+3. Is Nebraska labled?
+4. Is your graph label dynamic?
+5. Did you comment your code in Markdown?
