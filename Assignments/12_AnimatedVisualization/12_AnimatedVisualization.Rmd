@@ -5,8 +5,8 @@ There is a package called gganimate that ... you guessed it ... animates your gg
 Let's compare Nebraska's defense to Alabama's. 
 
 ```{r}
-install.packages('devtools')
-devtools::install_github('thomasp85/gganimate')
+# install.packages('devtools')
+# devtools::install_github('thomasp85/gganimate')
 ```
 Update all packages. Yes you want to install from source.
 
@@ -29,14 +29,12 @@ aldefthird <- defensethird %>% filter(Name == "Alabama")
 
 The important bits below:
 
-1. Each geom needs a frame. The frame is something like a year or a month or a game. Some time period. 
-2. That frame goes in the aes of each plot. Miss one and it will make art, but not the kind you want. 
-3. You can make dynamic labels. See the labs directive.
-4. The rest is simple. Just add your frame variable -- which field you are using to separate this -- into the transition_time function. 
+1. You can make dynamic labels. See the labs directive.
+2. The rest is simple. Just add your frame variable -- which field you are using to separate this -- into the transition_time function. 
 
 
 ```{r}
-ggplot(data=defensethird, aes(x=`Conversion %`, y=`Points/G`, frame = Year)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + geom_point(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`, frame = Year), color="red") + geom_point(data=aldefthird, aes(x=`Conversion %`, y=`Points/G`, frame = Year), color="black") + geom_text(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`, label=Name, frame = Year)) + geom_text(data=aldefthird, aes(x=`Conversion %`, y=`Points/G`, label=Name, frame = Year)) +
+ggplot(data=defensethird, aes(x=`Conversion %`, y=`Points/G`)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + geom_point(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`), color="red") + geom_point(data=aldefthird, aes(x=`Conversion %`, y=`Points/G`), color="black") + geom_text(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`, label=Name)) + geom_text(data=aldefthird, aes(x=`Conversion %`, y=`Points/G`, label=Name, frame = Year)) +
   labs(title = 'Two teams going in different directions: Alabama vs Nebraska {frame_time}', x = 'Opponent third down', y = 'Points per game') +
   transition_time(Year) +
   ease_aes('linear')
