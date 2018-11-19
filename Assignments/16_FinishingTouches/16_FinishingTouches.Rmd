@@ -112,16 +112,21 @@ join5 <- left_join(join4, defenseLongPlays, by="Name")
 ```{r}
 
 fbscomposite <- join5 %>% mutate(
-  oppg_z = scale(`Points/G.x`, center=TRUE, scale=TRUE),
-  dppg_z = -1 * (scale(`Points/G.y`, center=TRUE, scale=TRUE)),
-  othird_z = scale(`Conversion %.x`, center=TRUE, scale=TRUE),
-  dthird_z = -1 * (scale(`Conversion %.y`, center=TRUE, scale=TRUE)),
-  olong_z = scale(`10+.x`, center=TRUE, scale=TRUE),
-  dlong_z = -1 * (scale(`10+.y`, center=TRUE, scale=TRUE)),
+  oppg_z = as.numeric(scale(`Points/G.x`, center=TRUE, scale=TRUE)),
+  dppg_z = as.numeric(-1 * (scale(`Points/G.y`, center=TRUE, scale=TRUE))),
+  othird_z = as.numeric(scale(`Conversion %.x`, center=TRUE, scale=TRUE)),
+  dthird_z = as.numeric(-1 * (scale(`Conversion %.y`, center=TRUE, scale=TRUE))),
+  olong_z = as.numeric(scale(`10+.x`, center=TRUE, scale=TRUE)),
+  dlong_z = as.numeric(-1 * (scale(`10+.y`, center=TRUE, scale=TRUE))),
   composite = oppg_z + dppg_z + othird_z + dthird_z + olong_z + dlong_z
 )
 
 ```
+
+```{r}
+fbscomposite %>% select(Name, composite) %>% arrange(composite)
+```
+
 
 ```{r}
 ggplot() + geom_bar(data=fbscomposite, aes(x=reorder(Name, composite), weight=composite)) + coord_flip()

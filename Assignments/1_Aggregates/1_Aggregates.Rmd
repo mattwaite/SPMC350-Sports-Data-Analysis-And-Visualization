@@ -1,7 +1,9 @@
 ---
 title: "Aggregates"
 author: "By Matt Waite"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 R is a statistical programming language that is purpose built for data analysis.

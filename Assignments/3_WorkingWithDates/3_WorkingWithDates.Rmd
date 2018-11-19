@@ -1,3 +1,12 @@
+---
+title: "Working with dates"
+author: "By Matt Waite"
+output:
+  html_document:
+    df_print: paged
+---
+
+
 # Working with dates
 
 One of the most frustrating things in data is working with dates. Everyone has a different opinion on how to record them, and every software package on the planet has to sort it out. Dealing with it can be a little ... confusing. And every dataset has something new to throw at you. So consider this an introduction. 
