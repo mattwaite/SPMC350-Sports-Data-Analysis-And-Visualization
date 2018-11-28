@@ -100,8 +100,6 @@ formattable(
 Another way to deal with this -- color tiles. Change the rectangle that houses the data to a color indicating the intensity of it. Again, UTEP stands out.
 
 ```{r}
-unit.scale = function(x) (x - min(x)) / (max(x) - min(x))
-
 formattable(
   changeTotalOffense, 
   align="r",
