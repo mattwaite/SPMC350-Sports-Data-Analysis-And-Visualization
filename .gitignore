@@ -1,2 +1,4 @@
 *.pdf
 *.html
+.Rproj.user
+.DS_Store

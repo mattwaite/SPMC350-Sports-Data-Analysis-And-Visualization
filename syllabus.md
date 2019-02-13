@@ -1,12 +1,12 @@
-# SPMC 350 Data Literacy and Analytics in Sports
+# SPMC 350 Sports Data Analysis and Visualization
 
-**Fall 2018**  
-**M/W 10:30 - 11:45**    
-**Nebraska Hall W106**  
+**Spring 2019**  
+**M/W/F 12:30 - 1:20**    
+**Andersen Hall 114**  
 
 Instructor: Matt Waite  
 Email: matt.waite@unl.edu  
-Phone: (402) 472-5840 office, (402) 802-5202 cell  
+Phone: (402) 472-5840 office  
 Office: 244 Andersen Hall  
 
 __Course description:__  
@@ -15,7 +15,7 @@ Like few other industries on the planet, sports is awash in data and the amount 
 
 __Prerequisites:__
 
-A grade of C or better in SPMC250.
+A grade of C or better in SPMC250 or instructor permission.
 
 __Required Materials:__  
 
@@ -26,22 +26,21 @@ __Required Materials:__
 
 __Learning opportunities:__  
 
-The bulk of the graded work in this class is as follows:
+The graded work in this class is as follows:
 
 |Assignment|Percentage of your grade|
 |----------|------------------------|
-|Three sports data presentations|50%|
-|Weekly data challenges|30%|
-|Pop quizzes|15%|
-|Class participation/attendance|5%|
+|Two sports data presentations|40%|
+|Data challenges|50%|
+|Pop quizzes|10%|
 
-_Sports data presentations_: You will be required to pitch and execute three sports data presentations on your own during the semester. The presentations must include original analysis of data you have obtained, a graphic or visualization of that data, a written summary of what you found and a verbal presentation of that data and analysis.
+_Sports data presentations_: You will be required to pitch and execute two sports data presentations on your own during the semester. The presentations must include original analysis of data you have obtained, a graphic or visualization of that data, a written summary of what you found and a verbal presentation of that data and analysis.
 
-_Weekly data challenges_: Every week, there will be a challenge covering the analysis or visualization topic of the week. The challenge will incorporate the materials from class and require you to apply them. Each challenge will have a required outcome that will help you in your presentations and the course outcomes.
+_Data challenges_: Regularly throughout the semester, there will be challenges covering an analysis or visualization topic. The challenge will incorporate the materials from class and require you to apply them. Each challenge will have a required outcome that will help you in your presentations and the course outcomes.
 
 _Pop quizzes_: To reinforce the in-class lectures and the course readings, there will be occasional pop quizzes. They will be short, multiple choice and on Canvas.
 
-_Class participation and attendance_: You are bad at college if you don't know what this means. Get involved in class, speak up, ask questions, challenge ideas and you'll get the points. Sit on your hands, do nothing, skip class and you will not like what happens.
+_Class participation and attendance_: You are bad at college if you don't know what this means. Get involved in class, speak up, ask questions, challenge ideas and, most importantly, show up. This is how I determine who gets rounded up when you have an 89.4 and who doesn't. Skip class and you won't get any benefit of the doubt. 
 
 Other learning opportunities:
 
@@ -58,11 +57,12 @@ As such, this class will require to you try a lot of things on your own. If you'
 __Learning outcomes:__  
 
 * Master basic data analysis
-* Gain exposure to the tools of sports analysis, including statistical languages and visual presentation.
+* Experience the tools of sports analysis, including statistical languages and visual presentation.
 * Master the use of data in sports storytelling
 * Master basic data visualization for sports storytelling
 
-__ACEJMC Competencies__
+
+__ACEJMC Competencies__
 
 After this class, you should be able to:
 
@@ -160,9 +160,9 @@ __EVACUATION (Fire, Internal Hazardous Materials Release)__
 
 ## Course schedule
 
-This is __very tentative__ and __will change__.
+This is __somewhat tentative__ and __can change__.
 
-### Monday, Aug. 20, 2018
+### Monday, Jan. 7, 2019
 
 **In class:** Introductions, syllabus, requirements, why sports data?
 
@@ -174,213 +174,347 @@ This is __very tentative__ and __will change__.
 * Install [R Studio Desktop for your computer](https://www.rstudio.com/products/rstudio/download/#download) ONLY AFTER YOU HAVE INSTALLED R
 * Read Data Analytics in Sports in Files on Canvas. There will be quiz on Wednesday.
 
-### Wednesday, Aug. 22, 2018
+### Wednesday, Jan. 9, 2019
 
 **In class:** Reading quiz, An introduction to asking questions with data
 
 **Assignment:**
 
 * Do the spreadsheet assignment
-* Read the two replication essays in files in Canvas
-* Read the AP Stylebook Data Journalism appendix
 
-### Monday, Aug. 27, 2018
+### Friday, Jan. 11, 2019
 
-**In class:** Reading quiz, Replication in analysis
+**In class:** Spreadsheets
 
 **Assignment:**
 
-* Do the basic R assignment
-* Read [Baseball’s Upward Trend Is Leaving Some Players Grounded](https://www.nytimes.com/interactive/2017/07/09/sports/baseball/BASEBALL-LAUNCH-ANGLE.html)
+* Spreadsheet assignment 2
+* Read the two replication essays in files in Canvas
+* Read the AP Stylebook Data Journalism appendix
 
-### Wednesday, Aug. 29, 2018
+### Monday, Jan. 14, 2019
 
-**In class:** Reading quiz, working in R Studio in R Notebooks
+**In class:** Reading quiz, more spreadsheets
+
+**Assignment:**
+
+* Do the replication with spreadsheets assignment
+
+### Wednesday Jan. 16, 2019
+
+**In class:** Replication and R
+
+**Assignment:**
+
+- Do the exploring the environment assignment
+
+### Friday, Jan. 18, 2019
+
+**In class:** R Basics and the basics of code
+
+**Assignment:**
+
+- Do the R Basics assignment
+- Reading assignment: [Premiere league teams doing more with less](https://austinwehrwein.com/data-visualization/eplmarket/) and how to write an analysis notebook.
+
+### Monday, Jan. 21, 2019
+
+NO CLASS. MLK DAY
+
+### Wednesday, Jan. 23, 2019
+
+**In class:** Aggregates and measures of the middle
 
 **Assignment:**
 
 * Do the aggregates assignment
-* Reading TBA
 
-### Monday, Sept. 3, 2018
+### Friday, January 25, 2019
 
-**NO CLASS. LABOR DAY**
-
-### Wednesday, Sept. 5, 2018
-
-**In class:** Basic math and mutating data
+**In class:** Basic math and mutating data.  
 
 **Assignment:**
 
-* Do the percent change assignment
+- Do the mutating data assignment 
+- Read John Burns-Murdoch on soccer data analysis in Files on Canvas
 
-### Monday, Sept. 10, 2018
+### Monday, January 28, 2019
+
+**In class:** John Burns-Murdoch, zscores
+
+**Assignment:**
+
+- Do the Zscores assignment 
+
+### Wednesday, January 30, 2019
 
 **In class:** Why are dates such a problem?
 
 **Assignment:**
 
-* Do the working with dates assignment
+- Do the working with dates assignment
 
-### Wednesday, Sept. 12, 2018
+### Friday, February 1, 2019
+
+**In class:**  Removing and focusing: Filters and selections
+
+**Assignment:**
+
+- Do the filters and selections assignment 
+- Reading assignment: [The Ringer's Soccer Watchability Rankings](https://www.theringer.com/soccer/2018/8/8/17658726/welcome-to-the-ringer-soccer-watchability-rankings)
+
+### Monday, February 4, 2019
 
 **In class:** Narrow vs wide data
 
-**Assignment:**
+**Assignment:** 
 
 * Do the Recasting Data assignment
 
-### Monday, Sept. 17, 2018
+### Wednesday, February 6, 2019
 
-**In class:** Visual storytelling, Visualizing data and the grammar of graphics
+**In class:** Visual storytelling, Visualizing data, your first major presentation
+
+**Assignment:** 
+
+* Read the layered grammar of graphics by Hadley Wickam
+
+### Friday, February 8, 2019
+
+**In class:** Grammar of graphics
+
+**Assignment:** 
+
+* Reading assignment: [Sports One Hit Wonders](https://pudding.cool/2018/04/one-hit-wonders/) and showing magnitude
+
+### Monday, February 11, 2019
+
+**In class:** Quiz, Grammar of graphics and visualizing magnitude
+
+**Assignment:** 
+
+- Do the intro to ggplot assignment
+
+### Wednesday, February 13, 2019
+
+**In class:** Visualizing proportion with stacked bar charts 
 
 **Assignment:**
 
-* Do the intro to ggplot assignment
-* Submit pitches by class on Wednesday
+- Do the stacked bar charts assignment
 
-### Wednesday, Sept. 19, 2018
+### Friday, February 15, 2019
 
-**In class:** More visualizing data, visualizing proportion
-
-**Assignment:**
-
-* Do the stacked bar charts assignment
-
-### Monday, Sept. 24, 2018
-
-**In class:** Introduction to stats, correlations
+**In class:** Visualizing change over time with line charts and layering 
 
 **Assignment:**
 
-* Do the scatterplots assignment
+- Reading assignment: [The NBA's Last Two Minute Report](https://pudding.cool/2017/02/two-minute-report/) and combining magnitude and proportion
 
-### Wednesday, Sept. 26, 2018
+### Monday, February 18, 2019
 
-**In class:** More visualizing proportions
+**In class:** More change over time with step charts and cumulative summaries
 
 **Assignment:**
 
-* Do the bubble charts and waffle charts assignment
+- Do the step chart assignment
 
-### Monday, Oct. 1, 2018
+### Wednesday, February 20, 2019
+
+**In class:** Scatterplots, correlation and regression 
+
+**Assignment:**
+
+- Do the scatterplot assignment
+
+### Friday, February 22, 2019
+
+**In class:** Residuals and linear predictions 
+
+**Assignment:**
+
+- Do the residuals assignment
+- Reading assignment: [Redrafting the NBA](https://pudding.cool/2017/03/redraft/) and using color to show differences
+
+### Monday, February 25, 2019
+
+**In class:** Pitches, Annotation layers, geom_text and labeling
+
+**Assignment:**
+
+- Do the annotation assignment
+- Written pitch for first data story due by Wednesday
+
+### Wednesday, February 27, 2019
+
+**In class:** Animated graphics and visualizing change 
+
+**Assignment:**
+
+- Do the gganimate assignment
+
+### Friday, March 1, 2019
 
 **In class:** Small multiples
 
-**Assignment:** Do the lattice charts assignment
+**Assignment:** 
 
-### Wednesday, Oct. 3, 2018
+- Do the lattice charts assignment
+- Reading assignment: [Reddit feels and NBA teams](https://fivethirtyeight.com/features/what-reddit-can-tell-us-about-nba-fan-bases/?ex_cid=538twitter) and small multiples
+
+### Monday, March 4, 2019
+
+**In class:** Visualizing proportion with Waffle Charts
+
+**Assignment:**
+
+- Do the waffle charts assignment
+
+### Wednesday, March 6, 2019
+
+**In class:** Sometimes what you need is a table 
+
+**Assignment:**
+
+- Do the table assignment
+
+### Friday, March 8, 2019
 
 **In class:** Finishing touches
 
 **Assignment:** Do the finishing touches assignment
 
-### Monday, Oct. 8, 2018
+### Monday, March 11, 2019
 
 **In class:** PRESENTATION 1, group 1
 
-**Assignment:**
-
-### Wednesday, Oct. 10, 2018
+### Wednesday, March 13, 2019
 
 **In class:** PRESENTATION 1, group 2
 
-**Assignment:**
+### Friday, March 15, 2019
 
-* Submit pitches by Wednesday class after fall break
-
-### Monday, Oct. 15, 2018
-
-**NO CLASS. FALL BREAK.**
-
-### Wednesday, Oct. 17, 2018
-
-**In class:** Visualizing change
+**In class:** PRESENTATION 1, group 3
 
 **Assignment:**
 
-* Do the gganimate assignment
+- Prepare pitches over spring break
 
-### Monday, Oct. 22, 2018
+### Monday, March 18, 2019
 
-**In class:** Data in futbol I
+Spring Break
 
-**Assignment:** TBD
+### Wednesday, March 20, 2019
 
-### Wednesday, Oct. 24, 2018
+Spring Break
 
-**In class:** Data in futbol II
+### Friday, March 22, 2019
 
-**Assignment:** TBD
+Spring Break
 
-### Monday, Oct. 29, 2018
+### Monday, March 25, 2019
 
-**In class:** Data in baseball I
-
-**Assignment:** TBD
-
-### Wednesday, Oct. 31, 2018
-
-**In class:** Data in baseball II
-
-**Assignment:** TBD
-
-### Monday, Nov. 5, 2018
-
-**In class:** Data in football I
+**In class:** Presentation 2 pitches, Critique
 
 **Assignment:**
 
-### Wednesday, Nov. 7, 2018
+- None
 
-**In class:** Data in football II
+### Wednesday, March 27, 2019
 
-**Assignment:** TBD
-
-### Monday, Nov. 12, 2018
-
-**In class:** PRESENTATION 2
+**In class:** Simulations
 
 **Assignment:**
 
-### Wednesday, Nov. 14, 2018
+- Do the simulations assignment
 
-**In class:** PRESENTATION 2
+### Friday, March 29, 2019
+
+**In class:** Chi Square tests for randomness
 
 **Assignment:**
 
-* Final pitches due by Monday
+- Do the Chi Square assignment
+- Reading assignment: [FiveThirtyEight, the Women's World Cup](https://fivethirtyeight.com/features/the-u-s-draws-an-easy-group-at-the-2019-world-cup-france-not-so-much/) and using tables
 
-### Monday, Nov. 19, 2018
+### Monday, April 1, 2019
 
-**In class:** Live fire exercise
+**In class:** Automating getting data with Rvest 
+
+**Assignment:**
+
+- Do the rvest assignment
+
+### Wednesday, April 3, 2019
+
+**In class:** More complicated rvest
+
+**Assignment:**
+
+- Do the more complicated rvest assignment
+
+### Friday, April 5, 2019
+
+**NOTE: LAST DAY TO WITHDRAW**
+
+**In class:** Even more complicated rvest
+
+**Assignment:**
+
+- Do the ever more complicated rvest assignment
+- Reading assignment: [NYTimes, soccer player origins](https://www.nytimes.com/interactive/2017/12/29/upshot/internationalization-of-pro-sports-leagues-premier-league.html), time and magnitude
+
+### Monday, April 8, 2019
+
+**In class:** Alluvial diagrams
+
+**Assignment:**
+
+- Do the alluvial chart assignment
+
+### Wednesday, April 10, 2019
+
+**In class:** Dumbell plots 
+
+**Assignment:**
+
+- Do the dumbell plots chart
+
+### Friday, April 12, 2019
+
+**In class:** Bubble charts 
+
+**Assignment:**
+
+- Do the bubble charts assignment
+- Reading assignment: [Baseball’s Upward Trend Is Leaving Some Players Grounded](https://www.nytimes.com/interactive/2017/07/09/sports/baseball/BASEBALL-LAUNCH-ANGLE.html)
+
+### Monday, April 15, 2019
+
+**In class:** Jeremy Bowers, Review
 
 **Assignment:** In class.
 
-### Wednesday, Nov. 21, 2018
-
-**NO CLASS. THANKSGIVING**
-
-### Monday, Nov. 26, 2018
+### Wednesday, April 17, 2019
 
 **In class:** Review
 
 **Assignment:** In class.
 
-### Wednesday, Nov. 28, 2018
+### Friday, April 19, 2019
 
 **In class:** Review
 
 **Assignment:** In class.
 
-### Monday, Dec. 3, 2018
+### Monday, April 22, 2019
 
-**In class:** FINAL PRESENTATIONS
+Final presentations
 
-**Assignment:**
+### Wednesday, April 24, 2019
 
-### Wednesday, Dec. 5, 2018
+Final presentations
 
-**In class:** FINAL PRESENTATIONS
+### Friday, April 26, 2019
 
-**Assignment:**
+Final presentations
