@@ -1,0 +1,58 @@
+,FROM,TO,count,COUNTRY
+47,Manchester United,Aberdeen,1,Scotland
+7,Chelsea,AC Milan,1,Italy
+8,Chelsea,Aston Villa,1,England
+48,Manchester United,Aston Villa,1,England
+9,Chelsea,Atalanta,1,Italy
+10,Chelsea,Atlético-MG,1,Spain
+30,Liverpool,Besiktas,1,Turkey
+11,Chelsea,Blackburn Rovers,1,England
+12,Chelsea,Bristol City,2,England
+13,Chelsea,Burton Albion,1,England
+41,Manchester City,Celtic,1,Ireland
+1,Arsenal,Charlton Athletic,1,England
+14,Chelsea,Cheltenham Town,1,England
+15,Chelsea,Club Brugge,1,Belgium
+31,Liverpool,Crewe Alexandra,1,England
+16,Chelsea,Derby County,2,England
+32,Liverpool,Derby County,1,England
+33,Liverpool,Doncaster Rovers,1,England
+34,Liverpool,Eintracht Frankfurt,1,Germany
+17,Chelsea,Everton,1,England
+2,Arsenal,FC Porto,1,Portugal
+3,Arsenal,Fulham,1,England
+49,Manchester United,Fulham,1,England
+55,Tottenham Hotspur,Gillingham,1,England
+42,Manchester City,Girona,2,Spain
+50,Manchester United,Heart of Midlothian,1,England
+35,Liverpool,Hertha Berlin,1,Germany
+43,Manchester City,Hibernian,1,Scotland
+18,Chelsea,Hull City,1,England
+19,Chelsea,Leeds United,2,England
+44,Manchester City,Leeds United,1,England
+20,Chelsea,Leganes,1,Spain
+21,Chelsea,Lleida Esportiu,1,Spain
+51,Manchester United,Macclesfield Town,1,England
+22,Chelsea,Metz,1,France
+23,Chelsea,Nantes,1,France
+4,Arsenal,Napoli,1,Italy
+5,Arsenal,Plymouth Argyle,1,England
+45,Manchester City,Preston North End,2,England
+36,Liverpool,Rangers,1,Scotland
+37,Liverpool,Rochdale,1,England
+24,Chelsea,SC Stormvogels Telstar,1,Netherlands
+25,Chelsea,Scunthorpe United,1,England
+52,Manchester United,Scunthorpe United,1,England
+38,Liverpool,Sheffield United,1,England
+26,Chelsea,Sheffield Wednesday,1,England
+56,Tottenham Hotspur,Sheffield Wednesday,1,England
+27,Chelsea,Shrewsbury Town,1,England
+39,Liverpool,Southampton,1,England
+53,Manchester United,St Mirren,1,Scotland
+57,Tottenham Hotspur,Swansea City,1,England
+28,Chelsea,Torino,1,Italy
+40,Liverpool,Tranmere Rovers,1,England
+6,Arsenal,TSG Hoffenheim,1,Germany
+29,Chelsea,Valencia,1,Spain
+54,Manchester United,Vitoria Setubal,1,Portugal
+46,Manchester City,West Bromwich Albion,1,England

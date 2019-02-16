@@ -1,0 +1,26 @@
+---
+title: "More complicated spreadsheets"
+output:
+  html_document:
+    df_print: paged
+---
+
+Sometimes we get data that is not already summarized that we need to summarize in order to answer questions. 
+
+Today, let's look at [MLS Salaries](https://docs.google.com/spreadsheets/d/1j-YB7vtpK_TKFI4cySBPk8_jrLhYO1wOmn5QXPRgyoo/edit?usp=sharing). Major League Soccer is very good about publishing the salaries of each player in an easy to use format. 
+
+While knowing the salary of each player is useful, we need context. We need to have some questions answered, like: 
+
+* Which team has the highest payroll?
+* Which team has the higest average salary?
+* Which team has the highest median salary?
+* Which position group is the most expensive by median salary? Least?
+
+When faced with information we need to summarize, in spreadsheets we rely on something called a pivot table. They're enormously powerful and simple to use, once you get over how to get what you want. 
+
+First, watch this walkthrough:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j6mvLcr6c-8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Now answer the questions above using the [MLS Salaries](https://docs.google.com/spreadsheets/d/1j-YB7vtpK_TKFI4cySBPk8_jrLhYO1wOmn5QXPRgyoo/edit?usp=sharing) data. You'll have to make a copy of the data for yourself in Google Docs. Write a paragraph summarizing your answers in narrative form -- in other words, whole sentences. Submit your narrative for the assignment.  
+

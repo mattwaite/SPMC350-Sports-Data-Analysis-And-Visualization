@@ -1,0 +1,24 @@
+
+
+```{r}
+library(dplyr)
+library(readr)
+```
+
+
+```{r}
+logs <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Sports/logs.csv")
+```
+
+```{r}
+selected <- logs %>% select(Game, Team, Opponent, Conference, TeamScore, OpponentScore, TeamFGA, TeamFTA, W_L)
+```
+
+```{r}
+logs %>% mutate(Differential = TeamScore - OpponentScore)
+```
+
+```{r}
+selected %>% mutate(tspct = (TeamScore / (2 * (TeamFGA + (.44 * TeamFTA)))) * 100) %>% group_by(Team) %>% summarize(avg_ts = mean(tspct)) %>% arrange(desc(avg_ts))
+```
+

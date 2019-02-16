@@ -1,0 +1,24 @@
+---
+title: "Spreadsheets and replication"
+output:
+  html_document:
+    df_print: paged
+---
+
+The problem with spreadsheets is there is no built in way to audit what you have done. 
+
+This is a problem in many data intensive fields, but it is new in communications work. If you haven't already, [read this essay on replication in journalism](https://github.com/datajtext/DataJournalismTextbook/blob/master/Modules/Replication/introduction.md). And then [read this about data diaries](https://github.com/datajtext/DataJournalismTextbook/blob/master/Modules/Replication/replication_datadiary.md). 
+
+The data analysis you've done to this point has been simple. Now we're going to take a step into a more problematic world. And you're going to have to make decisions about how to answer the question. And, now, you're going to have to explain what you did with the data. 
+
+Continuing our look at the MLS, [here is a data set of attendance numbers by club from 2007-2017](https://docs.google.com/spreadsheets/d/15U0A5Xm7mZ_IWbvb5gM3MMM7EdNuWPbRwdBbVYipw7M/edit?usp=sharing).
+
+Here's the questions I have for you: What's happened over the last ten years of the MLS when it comes to attendance? What teams have improved? What teams have fallen off? Who is king?
+
+To get credit, you have to write a multi-sentence paragraph explaining what has happened in the last ten years when it comes to ticket sales. You will also need to keep a data diary detailing everything you did to get the answers you wrote about. You'll need to use pivot tables and calculate percent change. You'll also need to make some decisions. Make sure you are writing down everything you did. Combine them into one document and turn it in. 
+
+[Here's an example of a data diary](https://github.com/datajtext/DataJournalismTextbook/blob/master/Modules/Replication/replication_datadiary_excelexample.md). [Here's another](https://github.com/datajtext/DataJournalismTextbook/blob/master/Modules/Replication/TB_Data_Diary.pdf). There isn't a right way to do a data diary, except that it fully explains what you did so someone else could follow along and get the same answers. There is a wrong way, and that's to leave critical information out. Otherwise, structure it how you want. 
+
+Here's a walkthrough video to help you get started:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1zKqud3IBiM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

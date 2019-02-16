@@ -1,0 +1,9 @@
+# In Class: Taking your composite further
+
+Grab your notebook and data from Tuesday. You have two tasks in this class. You can divide them. 
+
+1. How meaningful to the outcome of the season are your measures? Did you choose meaningful measures or not? Use correlations that we've done in previous examples.
+
+2. Is Nebraska better than any team remaining on the schedule based on your composite? Rank Nebraska's remaning opponents using your measure. Then, as a group, predict the remaining games. Which ones could they win? Which ones won't they win? Use your composite as a guide, and note where you disagree. 
+
+Submit a single R Notebook. 

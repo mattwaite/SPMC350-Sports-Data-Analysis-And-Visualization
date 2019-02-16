@@ -1,0 +1,131 @@
+# Analytics in Soccer
+
+First, I want to show you a style of diagram called an Alluvial diagram. It's useful for showing flow from one thing to another. In this case, let's ask ourselves -- where do the Big 6 clubs in the Premiere League loan their young players? 
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggalluvial)
+```
+
+```{r}
+transfers <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Sports/Data/transfers.csv")
+```
+
+```{r}
+topclubs <- c("Arsenal", "Chelsea", "Manchester City", "Manchester United", "Liverpool", "Tottenham Hotspur")
+```
+
+```{r}
+forgraph <- transfers %>% filter(FROM %in% topclubs & FEE == "Loan") %>% group_by(FROM, TO) %>% summarise(count=n())
+```
+
+```{r}
+head(forgraph)
+```
+
+
+```{r}
+# write.csv(forgraph, "loans.csv")
+```
+
+```{r}
+loans <- read_csv("loans.csv")
+```
+```{r}
+head(loans)
+```
+
+
+```{r}
+ggplot(as.data.frame(loans),
+       aes(y = count, axis1 = FROM, axis2 = COUNTRY)) +
+  geom_alluvium(aes(fill = COUNTRY), width = 1/12) +
+  geom_text(stat = "stratum", label.strata = TRUE, size=2) + 
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), legend.position="none")
+```
+
+### Expected goals
+
+Expected goals is a measure of how often a goal should be scored based on a number of measures, including how close it is to the goal, the angle, if it's on the foot or the head, how well defended it is, what was the assist like. It's a measure that can be applied to individual players and to teams. 
+
+[Here's an explainer from the BBC](https://www.bbc.com/sport/football/40699431). 
+
+Let's look at the MLS playoffs going on right now. The MLS is in the conference semi-finals, so 8 teams remain. What does Expected Goals say about them? 
+
+First, let's look at the teams over the season. 
+
+```{r}
+library(rvest)
+library(ggrepel)
+```
+
+```{r}
+url <- "https://www.americansocceranalysis.com/team-xg-2018/"
+
+xG18 <- url %>%
+  read_html() %>%
+  html_nodes(xpath = '//*[@id="myTable"]') %>% 
+  html_table()
+
+xG18 <- xG18[[1]]
+
+```
+
+```{r}
+url <- "https://www.americansocceranalysis.com/mls-tables-2018/"
+
+western <- url %>%
+  read_html() %>%
+  html_nodes(xpath = '//*[@id="WesternConferenceTable"]') %>% 
+  html_table()
+
+western <- western[[1]]
+
+
+eastern <- url %>%
+  read_html() %>%
+  html_nodes(xpath = '//*[@id="EasternConferenceTable"]') %>% 
+  html_table()
+eastern <- eastern[[1]]
+
+points <- rbind(eastern, western) %>% rename(Team = Club)
+```
+
+```{r}
+# write.csv(points, "points.csv")
+# write.csv(xG18, "xG18.csv")
+```
+
+```{r}
+crosswalk <- read_csv("crosswalk.csv")
+```
+
+```{r}
+names <- left_join(points, crosswalk, by=c("Team" = "Tables")) 
+
+mls <- left_join(names, xG18, by=c("XG" = "Team"))
+```
+
+```{r}
+ggplot(data=mls, aes(x=Pts, y=`xGD/g`)) + geom_point() + geom_smooth(method = lm, se=FALSE) + geom_text_repel(data=mls, aes(x=Pts, y=`xGD/g`, label=XG)) 
+```
+
+```{r}
+bracket1 <- c("Kansas City", "Salt Lake")
+bracket2 <- c("Seattle", "Portland")
+bracket3 <- c("New York", "Columbus")
+bracket4 <- c("Atlanta United", "New York City FC")
+```
+
+```{r}
+mls %>% filter(XG %in% bracket1) %>% select(Team, `xGF/g`, `xGA/g`, `GD-xGD`)
+
+mls %>% filter(XG %in% bracket2) %>% select(Team, `xGF/g`, `xGA/g`, `GD-xGD`)
+
+mls %>% filter(XG %in% bracket3) %>% select(Team, `xGF/g`, `xGA/g`, `GD-xGD`)
+
+mls %>% filter(XG %in% bracket4) %>% select(Team, `xGF/g`, `xGA/g`, `GD-xGD`)
+
+```
+

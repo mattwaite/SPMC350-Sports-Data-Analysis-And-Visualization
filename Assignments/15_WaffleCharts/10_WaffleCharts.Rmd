@@ -1,0 +1,86 @@
+# Waffle charts
+## Or why you should never, ever use a pie chart.
+
+Pie charts are the devil. They are an instant F in this class. I'll give you an example of why.
+
+What's the racial breakdown of journalism majors at UNL?
+
+Here it is in a pie chart:
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+enrollment <- read.csv("~/Dropbox/JOUR407-Data-Visualization/Data/collegeenrollment.csv")
+
+jour <- filter(enrollment, MajorName == "Journalism")
+
+jdf <- jour %>% 
+group_by(Race) %>%
+summarize(
+       total=sum(Count)) %>%
+select(Race, total) %>% 
+filter(total != 0)
+
+ggplot(jdf, aes(x="", y=total, fill=Race)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0)
+```
+You can see, it's pretty white. But ... what about beyond that? How carefully can you evaluate angles and area?
+
+Not well.
+
+So let's introduce a better way: The Waffle Chart. Some call it a square pie chart. I personally hate that. Waffles it is. 
+
+First, install the library: 
+
+`install.packages('waffle')`
+
+Now load it: 
+
+```{r}
+library(waffle)
+```
+
+Let's look at the offensive numbers from Saturday's Nebraska v. Wisconsin football game. Nebraska lost 41-24, but Wisconsin gained only 15 yards more than Nebraska did. You can find the [official stats on the NCAA's website](https://www.ncaa.com/game/football/fbs/2018/10/06/nebraska-wisconsin/team-stats).
+
+I'm going to make two vectors for each team and record rushing yards and passing yards. 
+
+```{r}
+nu <- c("Rushing"=111, "Passing"=407)
+wi <- c("Rushing"=370, "Passing"=163)
+```
+
+So what does the breakdown of Nebraska's night look like? How balanced was the offense? 
+
+The waffle library can break this down in a way that's easier on the eyes than a pie chart. We call the library, add the data, specify the number of rows, give it a title and an x value label, and to clean up a quirk of the library, we've got to specify colors. 
+
+```{r}
+waffle(nu/10, rows = 10, title="Nebraska's night on offense", xlab="1 square = 10 yard", colors = c("black", "red"))
+```
+So what does it look like if we compare the two teams. Do do that -- and I am not making this up -- you have to create a waffle iron. Get it? Waffle charts? Iron? 
+
+```{r}
+iron(
+ waffle(nu/10, rows = 10, title="Nebraska's night on offense", xlab="1 square = 10 yards", colors = c("black", "red")),
+ waffle(wi/10, rows = 10, title="Wisconsin's night on offense", xlab="1 square = 10 yards", colors = c("black", "red"))
+)
+```
+
+### Assignment
+
+Compare Nebraska and Wisconsin using a Waffle chart using something other than what I've done above. 
+
+[Here's the library's documentation](https://github.com/hrbrmstr/waffle).
+[Here's the stats from the game](https://www.ncaa.com/game/football/fbs/2018/10/06/nebraska-wisconsin/team-stats).
+
+Turn in your notebook with your waffle chart by the end of class. It must contain these two things:
+
+* Your waffle chart
+* A written narrative of what it says. What does your waffle chart say about how that game turned out?
+
+
+```{r}
+penalties <- c('Wisconsin'=50, 'Nebraska'=100)
+
+waffle(penalties, rows=10, title="Penalty yards", xlab="1 square = 1 yard", colors=c("black", "red"))
+```
+Not good, Bob. Not good. 
