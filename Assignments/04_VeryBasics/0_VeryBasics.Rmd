@@ -36,7 +36,7 @@ Now, to use the library, type `library(swirl)` and hit enter. Then type `swirl()
 
 ### Adding libraries, part 2
 
-We'll mostly use two libraries for analysis -- dplyr and ggplot2. To get them, and several other useful libraries, we can install a single collection of libraries called the tinyverse. Type this into your console: `install.packages('tidyverse')`
+We'll mostly use two libraries for analysis -- dplyr and ggplot2. To get them, and several other useful libraries, we can install a single collection of libraries called the tidyverse. Type this into your console: `install.packages('tidyverse')`
 
 Then, to help us with learning and replication, we're going to use R Notebooks. So we need to install that library. Type this into your console: `install.packages('rmarkdown')`
 

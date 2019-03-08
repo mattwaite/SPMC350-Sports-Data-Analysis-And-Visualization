@@ -1,6 +1,9 @@
-# Waffle charts
-## Or why you should never, ever use a pie chart.
-
+---
+title: "Waffle charts, because pie charts are the devil"
+output:
+  html_document:
+    df_print: paged
+---
 Pie charts are the devil. They are an instant F in this class. I'll give you an example of why.
 
 What's the racial breakdown of journalism majors at UNL?
@@ -30,7 +33,7 @@ Not well.
 
 So let's introduce a better way: The Waffle Chart. Some call it a square pie chart. I personally hate that. Waffles it is. 
 
-First, install the library: 
+First, install the library in the console: 
 
 `install.packages('waffle')`
 

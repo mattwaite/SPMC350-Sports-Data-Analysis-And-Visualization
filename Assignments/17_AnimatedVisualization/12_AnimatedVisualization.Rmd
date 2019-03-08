@@ -4,11 +4,7 @@ There is a package called gganimate that ... you guessed it ... animates your gg
 
 Let's compare Nebraska's defense to Alabama's. 
 
-```{r}
-# install.packages('devtools')
-# devtools::install_github('thomasp85/gganimate')
-```
-Update all packages. Yes you want to install from source.
+Go to the console and type `install.packages("gganimate")`
 
 ```{r}
 library(tidyverse)
@@ -32,24 +28,68 @@ The important bits below:
 1. You can make dynamic labels. See the labs directive.
 2. The rest is simple. Just add your frame variable -- which field you are using to separate this -- into the transition_time function. 
 
-
 ```{r}
-ggplot(data=defensethird, aes(x=`Conversion %`, y=`Points/G`)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + geom_point(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`), color="red") + geom_point(data=aldefthird, aes(x=`Conversion %`, y=`Points/G`), color="black") + geom_text(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`, label=Name)) + geom_text(data=aldefthird, aes(x=`Conversion %`, y=`Points/G`, label=Name, frame = Year)) +
+ggplot(data=defensethird, aes(x=`Conversion %`, y=`Points/G`)) + 
+  geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + 
+  geom_point(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`), color="red") + 
+  geom_point(data=aldefthird, aes(x=`Conversion %`, y=`Points/G`), color="black") + 
+  geom_text(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`, label=Name)) + 
+  geom_text(data=aldefthird, aes(x=`Conversion %`, y=`Points/G`, label=Name, frame = Year)) +
   labs(title = 'Two teams going in different directions: Alabama vs Nebraska {frame_time}', x = 'Opponent third down', y = 'Points per game') +
-  transition_components(time, exit_length = 20) + 
   transition_time(Year) +
-  ease_aes('linear')
-  
+  enter_fade() + 
+  exit_shrink() +
+  ease_aes('sine-in-out')
 ```
 
 ### Assignment
 
-Animate your scatterplot from the scatterplot assignment looking at penalties. How has Nebraska changed over time? Produce an animated scatterplot similar to this walkthrough. 
+Just how out of whack was Nebraska's penalty yards per game last season midway through? Let's animate it and find out. I'll give you some code to get you started. What you have here is every football team in the FBS since 2009, how many penalty yards per game they run up and how many points per game they score, all in a dataframe called joined. You should be able to just run this and it will work: No downloading required.
+
+```{r}
+penalties <- read_csv("https://raw.githubusercontent.com/mattwaite/SPMC350-Sports-Data-Analysis-And-Visualization/master/Data/penalties.csv")
+
+offense <- read_csv("https://raw.githubusercontent.com/mattwaite/SPMC350-Sports-Data-Analysis-And-Visualization/master/Data/ScoringOffense.csv")
+
+joined <- penalties %>% left_join(offense, by=c("Year", "Name"))
+```
+
+So what you need to do is filter out Nebraska into a dataframe, and then using the code above, modify it so you can see where Nebraska was over the years when it comes to penalty yards and scoring. You'll be adjusting the dataframes used, at least one field name, and the labels. 
 
 #### Rubric
 
 1. Did you create an animated scatterplot?
 2. Is Nebraska marked on it with the rest of the FBS?
 3. Is Nebraska labled?
-4. Is your graph label dynamic?
-5. Did you comment your code in Markdown?
+4. Did you comment your code in Markdown?
+
+```{r}
+library(tidyverse)
+library(gganimate)
+```
+
+```{r}
+penalties <- read_csv("https://raw.githubusercontent.com/mattwaite/SPMC350-Sports-Data-Analysis-And-Visualization/master/Data/penalties.csv")
+
+offense <- read_csv("https://raw.githubusercontent.com/mattwaite/SPMC350-Sports-Data-Analysis-And-Visualization/master/Data/ScoringOffense.csv")
+
+joined <- penalties %>% left_join(offense, by=c("Year", "Name"))
+```
+
+```{r}
+nu <- joined %>% filter(Name == "Nebraska")
+```
+
+
+
+```{r}
+ggplot(data=joined, aes(x=`Yards/G`, y=`Points/G`)) + 
+  geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + 
+  geom_point(data=nu, aes(x=`Yards/G`, y=`Points/G`), color="red") + 
+  geom_text(data=nu, aes(x=`Yards/G`, y=`Points/G`, label=Name)) + 
+  labs(title = 'For Nebraska and penalties, 2018 was weird: {frame_time}', x = 'Penalty yards per game', y = 'Points per game') +
+  transition_time(Year) +
+  enter_fade() + 
+  exit_shrink() +
+  ease_aes('sine-in-out')
+```

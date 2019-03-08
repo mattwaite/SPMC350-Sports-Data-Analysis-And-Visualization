@@ -1,4 +1,11 @@
-# Finishing Touches
+---
+title: "Finishing touches, part 1"
+author: "By Matt Waite"
+output:
+  html_document:
+    df_print: paged
+---
+
 
 The output from ggplot is good, but not great. We need to add some pieces to it. The elements of a good graphic are:
 
@@ -240,7 +247,7 @@ ggplot() + geom_bar(data=fbscomposite, aes(x=reorder(Name, composite), weight=co
     axis.title.y = element_blank(),
     axis.text = element_text(size = 7),
     axis.ticks = element_blank()
-  ) + ggsave("plot.pdf", width=5, height=12)
+  ) + ggsave("plot.png", width=5, height=12)
 ```
 
 ### Cleaning up in Illustrator

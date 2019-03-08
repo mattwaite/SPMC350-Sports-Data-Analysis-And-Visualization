@@ -1,6 +1,12 @@
-# Residuals
+---
+title: "Residuals"
+author: "By Matt Waite"
+output:
+  html_document:
+    df_print: paged
+---
 
-When looking at a linear model of your data -- like how we did with predicting the score using third down conversion percentage -- there's a measure you need to be aware of called residuals. The residual is the distance between what the model predicted and what the real outcome is. So if your model predicted a team would score 38 points per game given their third down conversion percentage, and they score 45, then your residual is 7. If they had scored 31, then their residual would be -7. 
+When looking at a linear model of your data, there's a measure you need to be aware of called residuals. The residual is the distance between what the model predicted and what the real outcome is. So if your model predicted a team would score 38 points per game given their third down conversion percentage, and they score 45, then your residual is 7. If they had scored 31, then their residual would be -7. 
 
 Residuals can tell you severals things, but most importantly is if a linear model the right model for your data. If the residuals appear to be random, then a linear model is appropriate. If they have a pattern, it means something else is going on in your data and a linear model isn't appropriate. 
 
@@ -59,9 +65,9 @@ fit <- lm(`Points/G` ~ `Conversion %`, data = offense)
 summary(fit)
 ```
 
-We've seen this output before, but let's review because if you are using scatterplots to make a point, you should do this. First, note the Min and Max residual at the top. A team has underperformed the model by 13 points, and a team has overperformed it by 14. The median residual, where half are above and half are below, is just slightly under the fit line. Close here is good. 
+We've seen this output before, but let's review because if you are using scatterplots to make a point, you should do this. First, note the Min and Max residual at the top. A team has underperformed the model by 11 points, and a team has overperformed it by 13.5. The median residual, where half are above and half are below, is just slightly under the fit line. Close here is good. 
 
-Next: Look at the Multiple R-squared value. What that says is that 42 percent of a team's scoring output can be predicted by their third down conversion percentage. This is just one year, so that's a little low. If we did this with more years, that would go up. 
+Next: Look at the Adjusted R-squared value. What that says is that 44 percent of a team's scoring output can be predicted by their third down conversion percentage. This is just one year, so that's a little low. If we did this with more years, that would go up. 
 
 Last: Look at the p-value. We are looking for a p-value smaller than .05. At .05, we can say that our correlation didn't happen at random. And, in this case, it REALLY didn't happen at random. 
 
@@ -84,7 +90,7 @@ The first thing we want to do is to see if our linear model is appropriate. We d
 ggplot(offense, aes(x=`Conversion %`, y=residuals)) + geom_point()
 ```
 
-The lack of a shape here -- the seemingly random nature -- is a good sign that a linear model workds for our data. 
+The lack of a shape here -- the seemingly random nature -- is a good sign that a linear model works for our data. 
 
 Another way to view your residuals is to plot them. How we do that is by connecting the predicted value with the actual value using `geom_segement`. The geom_segment adds two required elements to the `aes`: the `xend` and the `yend`.  
 
@@ -104,12 +110,11 @@ summary(pfit)
 
 So from top to bottom:
 
-* Our min and max go from -16 to positive 19
-* Our multiple R-squared is ... .019. Not much at all. 
-* Our p-value is ... .12, which is GREATER than .05, which means it's entirely possible the predictive power of our correlation is completely random. 
+* Our min and max go from -16.5 to positive 18.5
+* Our adjusted R-squared is ... .007. Not much at all. 
+* Our p-value is ... .16, which is GREATER than .05, which means it's entirely possible the predictive power of our correlation is completely random. 
 
 Normally, we'd stop right here -- why bother going forward with a predictive model that isn't predictive? But let's do it anyway. 
-
 
 ```{r}
 penalties$predicted <- predict(pfit)
@@ -120,7 +125,7 @@ penalties$residuals <- residuals(pfit)
 penalties %>% arrange(desc(residuals))
 ```
 
-So our model says Alabama *should* only be scoring 29 points per game given how many penalty yards per game, but they're really scoring 48. Oy. What happens if we plot those residuals? 
+So our model says Oklahoma *should* only be scoring 29.9 points per game given how many penalty yards per game, but they're really scoring 48.4. Oy. What happens if we plot those residuals? 
 
 ```{r}
 ggplot(penalties, aes(x=`Yards/G`, y=residuals)) + geom_point()

@@ -1,6 +1,12 @@
-# More finishing touches with waffle charts
+---
+title: "Finishing touches, part 2"
+author: "By Matt Waite"
+output:
+  html_document:
+    df_print: paged
+---
 
-So I may have been too hasty with my damning of the waffle chart library and it's handling of finishing touches. It turns out it's not *that* bad, but it's not great. The reason it's not that bad is that it *is* actually using ggplot under the hood. The bad part is -- it's doing things to ggplot that aren't clear, so what you expect to work won't work exactly. Here's some examples using what we learned originally back in lesson 10. 
+So I may have been too hasty with my damning of the waffle chart library and it's handling of finishing touches. It turns out it's not *that* bad, but it's not great. The reason it's not that bad is that it *is* actually using ggplot under the hood. The bad part is -- it's doing things to ggplot that aren't clear, so what you expect to work won't work exactly. 
 
 ```{r}
 library(waffle)
@@ -24,7 +30,7 @@ The waffle library can break this down in a way that's easier on the eyes than a
 We can add labels and themes, but you have to be careful. The waffle library is applying it's own theme, but if we override something they are using in their theme, some things that are hidden come back and make it worse. So here is an example of how to use ggplot's `labs` and the theme to make a fully final project compliant graphic (meaning it has all the required parts). 
 
 ```{r}
-waffle(nu/10, rows = 10, xlab="1 square = 10 yard", colors = c("black", "red")) + labs(title="Nebraska vs Wisconsin on offense", subtitle="The Huskers couldn't get much of a running game going.", caption="Source: NCAA | Graphic by Matt Waite") + 
+waffle(nu/10, rows = 5, xlab="1 square = 10 yards", colors = c("black", "red")) + labs(title="Nebraska vs Wisconsin on offense", subtitle="The Huskers couldn't get much of a running game going.", caption="Source: NCAA | Graphic by Matt Waite") + 
   theme(
     plot.title = element_text(size = 16, face = "bold"),
     axis.title = element_text(size = 10),
@@ -32,12 +38,12 @@ waffle(nu/10, rows = 10, xlab="1 square = 10 yard", colors = c("black", "red")) 
   )
 ```
 
-Note: The alignment of text sucks. Example: Why is the source line LEFT of the headline? 
+Note: The alignment of text sucks. 
 
 How to fix that? We can use ggsave to a pdf and fix it in Illustrator.
 
 ```{r}
-waffle(nu/10, rows = 10, xlab="1 square = 10 yard", colors = c("black", "red")) + labs(title="Nebraska vs Wisconsin on offense", subtitle="The Huskers couldn't get much of a running game going.", caption="Source: NCAA | Graphic by Matt Waite") + 
+waffle(nu/10, rows = 5, xlab="1 square = 10 yards", colors = c("black", "red")) + labs(title="Nebraska vs Wisconsin on offense", subtitle="The Huskers couldn't get much of a running game going.", caption="Source: NCAA | Graphic by Matt Waite") + 
   theme(
     plot.title = element_text(size = 16, face = "bold"),
     axis.title = element_text(size = 10),
@@ -61,7 +67,7 @@ Here is a full example. I start with my waffle iron code, but note that each waf
 iron(
  waffle(
    nu/10, 
-   rows = 10, 
+   rows = 2, 
    colors = c("black", "red")) + 
    labs(title="Nebraska vs Wisconsin: By the numbers", subtitle="The Huskers couldn't run, Wisconsin could.") + 
    theme(
@@ -71,7 +77,7 @@ iron(
   ),
  waffle(
    wi/10, 
-   rows = 10, 
+   rows = 2, 
    xlab="1 square = 10 yards", 
    colors = c("black", "red")) + labs(caption="Source: NCAA | Graphic by Matt Waite")
 ) 
@@ -86,7 +92,7 @@ pdf("waffleiron.pdf")
 iron(
  waffle(
    nu/10, 
-   rows = 10, 
+   rows = 2, 
    colors = c("black", "red")) + 
    labs(title="Nebraska vs Wisconsin: By the numbers", subtitle="The Huskers couldn't run, Wisconsin could.") + 
    theme(
@@ -96,7 +102,7 @@ iron(
   ),
  waffle(
    wi/10, 
-   rows = 10, 
+   rows = 2, 
    xlab="1 square = 10 yards", 
    colors = c("black", "red")) + labs(caption="Source: NCAA | Graphic by Matt Waite")
 ) 

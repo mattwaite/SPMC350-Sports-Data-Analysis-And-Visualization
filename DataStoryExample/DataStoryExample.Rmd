@@ -1,6 +1,6 @@
-# Dear Nebraska media: Stop asking about penalties
+# Nebraska and penalties -- the story that wasn't. 
 
-A frequent question in Nebraska press conferences lately is the number of penalties the team has piling up. It's easy to see why: The team is dead last in the FBS in the number of penalty yards per game. Worst in major college football. The headlines write themselves.
+A frequent question in Nebraska press conferences during the last season was the number of penalties the team had been piling up. It's easy to see why: The team was at one point dead last in the FBS in the number of penalty yards per game. Worst in major college football. The headlines write themselves.
 
 The problem? It's almost meaningless to the team's success or failure. 
 
@@ -8,6 +8,8 @@ The problem? It's almost meaningless to the team's success or failure.
 library(tidyverse)
 library(ggrepel)
 ```
+
+Loading the data
 
 ```{r}
 penalties <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Sports/Data/Penalties.csv")
@@ -17,13 +19,15 @@ scoringdefense <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Spo
 defensivethirddowns <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Sports/Data/OpponentThirdDown.csv")
 ```
 
+Creating some filtered examples to illustrate the point. 
+
 ```{r}
 nu <- penalties %>% filter(Name == "Nebraska") %>% filter(Year == 2018)
 fbs <- penalties %>% filter(Year == 2018)
 osu <- penalties %>% filter(Name == "Ohio State") %>% filter(Year == 2018)
 ```
 
-Nebraska is winless, unlikely to make a bowl game and miles from the top 25. They commit more than 10 penalties per game for 97.8 yards per game. It would be easy to blame penalties. But Ohio State, undefeated, ranked third and an FBS playoff contender, commits 8.5 penalties per game for 80.8 yards. They're 120th in the FBS.
+At the point this data was captured, Nebraska was winless and people were looking for answers. But does penalties make you a bad team. Not unless then-undefeated Ohio State was bad. Here's a bar chart to put things in context. 
 
 ```{r}
 ggplot() + geom_bar(data=fbs, aes(x=reorder(Name, `Yards/G`), weight=`Yards/G`), fill="light grey") + geom_bar(data=nu, aes(x=reorder(Name, `Yards/G`), weight=`Yards/G`, fill="red")) + geom_bar(data=osu, aes(x=reorder(Name, `Yards/G`), weight=`Yards/G`, fill="red")) + labs(x="None", y="Penalty yards per game", title="Yep, Nebraska is the worst team in the country for penalties", subtitle="The winless Huskers surrender 97.4 yards per game. Ohio State, undefeated, is only 10 places higher.", caption="Source: NCAA | By Matt Waite") + theme_minimal() + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank(), plot.title = element_text(size = 16, face = "bold"), axis.title = element_text(size = 8), plot.subtitle = element_text(size=10), panel.grid.minor = element_blank()) + guides(fill=FALSE) + geom_text(data=nu, aes(x=Name, y=99, label="Nebraska", hjust = 1.1)) + geom_text(data=osu, aes(x=Name, y=99, label="Ohio State", hjust = 1.2, vjust=4)) + ggsave(filename="penalties.png", device = "png")
@@ -31,30 +35,38 @@ ggplot() + geom_bar(data=fbs, aes(x=reorder(Name, `Yards/G`), weight=`Yards/G`),
 
 So which is it? Do penalties make you a winner or a loser? 
 
-The answer? Neither. They determine very little of the outcome when you look at a whole season. In fact, looking at every FBS team since 2009, there's an even slightly positive effect. You read that right: the more penalty yards, the more points per game a team scores (slightly). Scott Frost even said his teams usually rank higher in penalties because the offense is trying to move fast to score points. 
+The answer? Neither. Let's do a scatterplot and then a correlation to show how not significant this is. 
+
+First going to join scoring offense and penalty data together by year and name. 
 
 ```{r}
 offensepenalties <- left_join(penalties, scoringoffense, by=c('Year', 'Name'))
 ```
 
+Now going to get just Nebraska to highlight it. 
+
 ```{r}
 nupen <- offensepenalties %>% filter(Name == "Nebraska") %>% filter(Year == 2018)
 ```
 
+Now the scatterplot, which will highlight Nebraska, a weird outlier in this case. 
 
 ```{r}
 ggplot(offensepenalties, aes(x=`Yards/G`, y=`Points/G`)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + labs(x="Penalty yards per game", y="Points per game", title="Penalty yards don't matter", subtitle="There's hardly any relationship with the number of penalty yards a team gives up vs their points per game", caption="Source: NCAA | By Matt Waite") + theme_minimal() + theme(plot.title = element_text(size = 16, face = "bold"), axis.title = element_text(size = 8), plot.subtitle = element_text(size=10), panel.grid.minor = element_blank()) + geom_point(data=nupen, aes(x=`Yards/G`, y=`Points/G`), color="red") + geom_text(data=nupen, x=92, y=19, label="Nebraska 2018") + ggsave(filename="penaltyscatter.png", device = "png")
 ```
 
+Now the linear model to put numbers to that chart showing how random it all is. 
+
 ```{r}
 penlm <- lm(offensepenalties$`Points/G` ~ offensepenalties$`Yards/G`)
 summary(penlm)
 ```
-Using all FBS teams since 2009, for every 10 penalty yards per game a team racks up, you'd expect to score .6 more points per game. 
+
+What's interesting here? The p-value says that the correlation isn't random -- it's real. It's just meaningless. 
 
 ### What matters? Third down. 
 
-Where the team is falling short, and where it actually matters, is on third down. 
+Where the team is falling short, and where it actually matters, is on third down. First let's get some third down data joined to scoring offense and then highlight Nebraska. 
 
 
 ```{r}
@@ -64,6 +76,8 @@ offensethird <- left_join(offensivethirddowns, scoringoffense, by=c('Year', 'Nam
 ```{r}
 nuthird <- offensethird %>% filter(Name == "Nebraska")
 ```
+
+This scatterplot and correlation will show a much tighter cluster of dots and a much more significant correlation. 
 
 
 ```{r}
@@ -75,29 +89,41 @@ offlm <- lm(offensethird$`Points/G` ~ offensethird$`Conversion %`)
 summary(offlm)
 ```
 
-Using a basic linear model and data from every FBS team since 2009, we see that for every percentage point of third down percentage, a team scores .83 points per game. Some teams will over perform that, some will underperform -- big plays, defensive touchdowns and special teams scores will help a team overperform that number, mistakes and poorly-timed penalties will help underperform. But the simple equation for a line will get you close. How close? 
+With this model, we can predict things. So here's one game: 
 
-Last Saturday, Nebraska converted on just 3 of 10 third downs against Wisconsin. Given that conversion percentage, our model says Nebraska should have scored 20.4 points. Wisconsin was better, converting 6 of 12. Our model says they should should have scored 37.1 points. 
+Nebraska converted on just 3 of 10 third downs against Wisconsin. Given that conversion percentage, our model says Nebraska should have scored 20.4 points. Wisconsin was better, converting 6 of 12. Our model says they should should have scored 37.1 points. 
 
 Final score: Wisconin 41, Nebraska 24. 
 
 ### Snakebitten
 
+Another area to look at is total yards per game versus points per game. This lends some credence to the penalty theory, except that stats say it's wrong over time. 
+
+First going to grab the data. 
+
 ```{r}
 scoringoffense <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Sports/Data/ScoringOffense.csv")
 totaloffense <- read_csv("~/Dropbox/SPMC350-Data-Literacy-and-Analytics-in-Sports/Data/TotalOffense.csv")
 ```
+
+Now going to join it together. 
 ```{r}
 offense <- left_join(totaloffense, scoringoffense, by=c('Year', 'Name'))
 ```
+
+And of course, pull out Nebraska. 
 
 ```{r}
 nu <- offense %>% filter(Name == "Nebraska") %>% filter(Year == 2018)
 ```
 
+This scatterplot and correlation are much, much tigher than third down, but the real news here is Nebraska is a historic outlier. 
+
 ```{r}
 ggplot(offense, aes(x=`Yards/G`, y=`Points/G`)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + labs(x="Total yards per game", y="Points per game", title="Snakebitten: Nebraska's offense", subtitle="The Husker's should be scoring way more than they are", caption="Source: NCAA | By Matt Waite") + theme_minimal() + theme(plot.title = element_text(size = 16, face = "bold"), axis.title = element_text(size = 8), plot.subtitle = element_text(size=10), panel.grid.minor = element_blank()) + geom_point(data=nu, aes(x=`Yards/G`, y=`Points/G`), color="red") + geom_text_repel(data=nu, aes(x=`Yards/G`, y=`Points/G`, label="Nebraska 2018")) + ggsave(filename="yards.png", device = "png")
 ```
+
+Here's the correlation:
 
 ```{r}
 cor.test(offense$`Yards/G`, offense$`Points/G`)
@@ -106,21 +132,26 @@ cor.test(offense$`Yards/G`, offense$`Points/G`)
 offenselm <- lm(offense$`Points/G` ~ offense$`Yards/G`)
 summary(offenselm)
 ```
+
+If you apply that, you get that Nebraska should be scoring 32 points per game, 11 more than they were when this data was gathered. 
 ```{r}
 (432.2 * 0.101767) - 11.951726
 ```
-So how much is that third-down percentage hurting Nebraska? If they were an average FBS school since 2009, they'd score almost 11 more points per game than they are now. 
-
-The Huskers are running up 432.2 yards per game this season. That's a lot for an 0-6 team. And it's a ton for a team averaging 21.3 points per game. If you took every offense since 2009 in the FBS, and gave them 432.2 yards per game, you would expect them to score 32 points per game. 
 
 ### It's not just the offense
 
-Nebraska's defense, by many accounts, is better this year than last year except where it counts: on the scoreboard. They are better that last year's defense on third down percentage -- 41.1 to 43.06 -- but they're giving up 39.2 points per game this season where they gave up 36.4 points per game. 
+But what about the defense? 
+
+Same story. 
+
+First we join the data and get Nebraska highlighted. 
 
 ```{r}
 defensethird <- left_join(defensivethirddowns, scoringdefense, by=c('Year', 'Name'))
 nudefthird <- defensethird %>% filter(Name == "Nebraska")
 ```
+
+Now the linear model. 
 
 ```{r}
 deflm <- lm(defensethird$`Points/G` ~ defensethird$`Conversion %`)
@@ -128,7 +159,7 @@ summary(deflm)
 ```
 Using the same basic linear model, we come up with very similar answers to the offense: for every third down conversion percentage point surrendered, the opponent scores .8 points. 
 
-Get off the field on third down, keep the other team from scoring. 
+Get off the field on third down, keep the other team from scoring. Here's the scatterplot with Nebraska's teams highlighted. 
 
 ```{r}
 ggplot(data=defensethird, aes(x=`Conversion %`, y=`Points/G`)) + geom_point(color="grey") + geom_smooth(method=lm, se=FALSE) + geom_point(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`), color="red") + geom_text_repel(data=nudefthird, aes(x=`Conversion %`, y=`Points/G`, label=Year)) + labs(x="Third-down conversion rate", y="Points per game", title="Nebraska's needs to get off the field more", subtitle="The more third downs a defense gives up, the more the other team scores. The Huskers are 86th in the FBS.", caption="Source: NCAA | By Matt Waite") + theme_minimal() + theme(plot.title = element_text(size = 16, face = "bold"), axis.title = element_text(size = 8), plot.subtitle = element_text(size=10), panel.grid.minor = element_blank()) + ggsave(filename="defensethirdscatter.png", device = "png")
